@@ -1,23 +1,38 @@
 import re
 import sys
+
 input = '123456789'
-listToken = ['+', '-', '']
-lis = [''] * 8  
+def  checkSolution(arr):
+    s = ''
+    for i in range(8):
+        s += input[i] + arr[i]
+    s += '9'
+    if(eval(s) == 100):
+        print('{} = {}'.format(s, eval(s)))
+    return 
 
-def lietKe100(i, lis=lis):
-    for j in listToken:
-        lis[i] = j
-        if i == 7:
-            # print(lis)
-            s = ''
-            for k in range(len(input) - 1):
-                s += input[k] + lis[k]
-            s += input[-1]
-            if eval(s) == 100:
-                print(s +' = ' + str(eval(s)))
-                break
-            lis = [''] * 8
-        else:
-            lietKe100(i + 1)
+# Function to generate all binary strings 
+def generateAllBinaryStrings(n, arr, i): 
 
-lietKe100(0)
+	if i == n: 
+		checkSolution(arr)
+		return
+	
+
+	arr[i] = '+'
+	generateAllBinaryStrings(n, arr, i + 1) 
+
+	arr[i] = '-'
+	generateAllBinaryStrings(n, arr, i + 1) 
+    
+	arr[i] = ''
+	generateAllBinaryStrings(n, arr, i + 1) 
+
+# Driver Code 
+if __name__ == "__main__": 
+    
+	n = 8
+	arr = [None] * n 
+
+	# Print all binary strings 
+	generateAllBinaryStrings(n, arr, 0) 
