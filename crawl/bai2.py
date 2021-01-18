@@ -27,7 +27,8 @@ filename = "customer.csv"
 # initializing the titles and rows list 
 fields = [] 
 rows = [] 
-  
+
+
 # reading csv file 
 with open(filename, 'r') as csvfile: 
     # creating a csv reader object 
